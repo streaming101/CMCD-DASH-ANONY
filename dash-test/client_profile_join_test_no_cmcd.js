@@ -12,7 +12,7 @@
  */
 /* Single Akamai video */
 
-const url = "http://localhost:8080/media/vod/bbb_30fps_akamai/bbb_30fps.mpd";    // w/o bufferBasedRateControl
+const url = "http://localhost:8080/media/vod/bbb_30fps_akamai/bbb_30fps.mpd";    // w/o bufferAwareBandwidthAllocation
 const segmentDuration = 4;
 /*
 const minBufferGlobal = segmentDuration;

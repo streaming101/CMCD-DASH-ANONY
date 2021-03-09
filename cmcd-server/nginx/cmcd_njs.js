@@ -25,17 +25,17 @@ function writeToLog(msg) {
 
 //
 // Sample query: 
-//   http://localhost:8080/cmcd-njs/bufferBasedRateControl/media/vod/bbb2/bbb.mpd?CMCD=bl%3D21300%2Cbs%2Cd%3D2000%2Csid%3D%226e2fb550-c457-11e9-bb97-0800200c9a66%22
+//   http://localhost:8080/cmcd-njs/bufferAwareBandwidthAllocation/media/vod/bbb2/bbb.mpd?CMCD=bl%3D21300%2Cbs%2Cd%3D2000%2Csid%3D%226e2fb550-c457-11e9-bb97-0800200c9a66%22
 // Dash obj uri:
 //   '/media/vod/bbb2/bbb.mpd'
 // Params string:
 //   'bl=21300,bs,d=2000,sid="6e2fb550-c457-11e9-bb97-0800200c9a66"'
 //
-function bufferBasedRateControl(r) {
+function bufferAwareBandwidthAllocation(r) {
     writeToLog('');
     writeToLog('### New request: ' + r.uri + ' ###');
     writeToLog('args: ' + r.variables.args);
-    var dashObjUri = r.uri.split('/cmcd-njs/bufferBasedRateControl')[1];
+    var dashObjUri = r.uri.split('/cmcd-njs/bufferAwareBandwidthAllocation')[1];
     function done(res) {
         r.return(res.status, res.responseBody);
     }
@@ -47,7 +47,7 @@ function bufferBasedRateControl(r) {
 }
 
 //
-// Triggered via bufferBasedRateControl.limit_rate setting in nginx.conf
+// Triggered via bufferAwareBandwidthAllocation.limit_rate setting in nginx.conf
 //
 function getBufferBasedRate(r) {
     writeToLog('getBufferBasedRate() triggered!');
@@ -247,5 +247,5 @@ function getTestRate(r) {
 
 
 // Note: We need to add the function to nginx.conf file too for HTTP access
-export default { bufferBasedRateControl, getBufferBasedRate, testProcessQuery, testRateControl, getTestRate };
+export default { bufferAwareBandwidthAllocation, getBufferBasedRate, testProcessQuery, testRateControl, getTestRate };
 
